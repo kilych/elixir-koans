@@ -65,6 +65,11 @@ defmodule Processes do
 
     assert_receive ___
     assert_receive ___
+    # doesn't actually check order
+
+    # that cheks
+    # receive do msg -> assert msg == "hola!" end
+    # receive do msg -> assert msg == "como se llama?" end
   end
 
   koan "A common pattern is to include the sender in the message, so that it can reply" do
@@ -104,7 +109,7 @@ defmodule Processes do
         send(caller, value)
         state(value)
 
-      {caller, :set, new_value} ->
+      {_caller, :set, new_value} ->
         state(new_value)
     end
   end
